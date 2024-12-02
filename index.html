@@ -3,7 +3,7 @@
 <html>
 
   <head>
-   
+    
     <img src="WebBanner2023.png" alt="Banner" width="900" height="300">
       <h1><b>ENG0018 Computer Laboratory 2023/24</b></h1>
       <h2>Student URN: 6807257</h2>
@@ -45,6 +45,10 @@
               display: block;  /* Ensures image does not have extra space */
             }
 
+            html {
+              scroll-behavior: smooth;
+            }
+
 
         </style>
 
@@ -64,31 +68,15 @@
 </style>
 
   
-<!table of contents>
-<table>
-
-  <tr>
-    <th><h3>Table of content</h3></th>
-  </tr>
-  <tr>
-    <td><a href="#Abstract">Abstract</a></td>
-  </tr>
-  <tr>
-    <td><a href="#Introduction">Introduction</a></td>
-  </tr>
-  <tr>
-    <td><a href="#Benefits and Challenges">Benefits and Challenges</a></td>
-  </tr>
-  <tr>
-    <td><a href="#Future of Surgical Robots">Future of Surgical Robots</a></td>
-    <tr>
-    <td><a href="#Conclusion">Conclusion</a></td>
-  </tr>
-  </tr>
-  <tr>
-    <td><a href="#References">References</a></td>
-  </tr>
-</table>
+<nav>
+  <ul>
+    <li><a href="#Abstract">Abstract</a></li>
+    <li><a href="#Introduction">Introduction</a></li>
+    <li><a href="#Benefits and Challenges">Benefits and Challenges</a></li>
+    <li><a href="#Future">Future of Robots</a></li>
+    <li><a href="#References">References</a></li>
+  </ul>
+</nav>
 
 
   
@@ -210,5 +198,22 @@
 
      
   </pre>
+  
+  <script>
+    // Collapsible sections functionality
+    const collapsibles = document.querySelectorAll(".collapsible");
+    collapsibles.forEach(collapsible => {
+      collapsible.addEventListener("click", () => {
+        collapsible.classList.toggle("active");
+        const content = collapsible.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    });
+  </script>
+
 </html>
 
