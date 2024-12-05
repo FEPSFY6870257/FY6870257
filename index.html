@@ -162,13 +162,13 @@
   errors. The example especially for the da Vinci system which is a ‘system consists of a console 
   from which the surgeon remotely controls arms connected to a robotic cart beside the 
   patient,’ it has been adopted widely, with over 7,500 units installed worldwide and 
-  millions of operations annually. Studies also highlight the ability of these systems to minimise 
-  postoperative problems and reduce recovery times, which supports the moral aspect to prioritise patient well-being 
-  and comfort (<a href="#ref-reddy2023">Reddy et al., 2023</a>; <a href="#ref-rivero2023">Rivero-Moreno et al., 2023</a>). 
-  In addition, because of the minimally invasive technology from robotic surgery, surgeons can get better results and 
-  shorter hospital stays with fewer incisions and less damage to surrounding tissue while maintaining ethical care 
-  (<a href="#ref-kucuk2018">Küçük, 2018</a>). These are progressions in preservation of a human services framework 
-  that is under huge strain to improve how patients experience the system.
+  millions of operations annually. <a href="#figure1">Figure 1</a> shows the da Vinci Surgical Robot in a hospital setting, 
+  it’s been important that robotic surgery should ensure it provides accurate as well as safe assistance (<a href="#ref-kucuk2018">Küçük, 2018</a>).
+  Studies also highlight the ability of these systems to minimise postoperative problems and reduce recovery times, which supports the moral aspect to 
+  prioritise patient well-being and comfort (<a href="#ref-reddy2023">Reddy et al., 2023</a>; <a href="#ref-rivero2023">Rivero-Moreno et al., 2023</a>). 
+  In addition, because of the minimally invasive technology from robotic surgery, surgeons can get better results and shorter hospital stays with 
+  fewer incisions and less damage to surrounding tissue while maintaining ethical care (<a href="#ref-kucuk2018">Küçük, 2018</a>). These are progressions 
+  in preservation of a human services framework that is under huge strain to improve how patients experience the system.
   </pre>
   
   <figure id="figure1">
@@ -259,5 +259,83 @@
      
   </pre>
 
+  <video src="ENG0018 Presentation.mp4" width="800" heiight="450" controls>
+  </video>
+      <!-- Last commit time display -->
+  <div id="last-updated">Loading last update time...</div>
+  <!-- Verify Button -->
+  <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+      Verify Last Modified Time
+  </button>
+  <script>
+      async function getLastUpdatedTime() {
+          const username = 'nr0025';
+          const repo = 'FY0025';
+         
+          const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+          try {
+              const response = await fetch(url, {
+                  method: 'GET',
+                  headers: {
+                      'Accept': 'application/vnd.github.v3+json',
+                  }
+              });
+              if (!response.ok) {
+                  throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+              }
+              const commits = await response.json();
+              if (commits && commits.length > 0) {
+                  const lastCommitDate = new Date(commits[0].commit.committer.date);
+                 
+                  // Displaying the time on load
+                  document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+              } else {
+                  document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+              }
+          } catch (error) {
+              console.error('Error fetching the last updated time:', error);
+              document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+          }
+      }
+      // Function to verify the last update time by re-fetching it from the API
+      async function verifyLastUpdatedTime() {
+          document.getElementById('last-updated').innerText = 'Verifying...';
+          await getLastUpdatedTime();
+          alert("Last modified time has been successfully verified from GitHub API.");
+      }
+      // Initial load to display the time on page load
+      window.onload = getLastUpdatedTime;
+  </script>
+  <p id="totalWordCount"></p>
+  <hr>
+  <script>
+    // Function to calculate and display word count for a specified section
+    function displayWordCount(sectionId, outputId) {
+      // Get the text content from the specified section
+      const text = document.getElementById(sectionId).textContent;
+      // Split text into words based on spaces and filter out any empty strings
+      const wordArray = text.trim().split(/\s+/);
+      // Count the words
+      const wordCount = wordArray.length;
+      // Return the word count for summing purposes
+      return wordCount;
+    }
+    // Function to calculate and display total word count from selected sections
+    function displayTotalWordCount() {
+      // Calculate word count for each section and accumulate the total
+      const IntroductionCount = displayWordCount("Introduction");
+      const BeneandChallCount = displayWordCount("Benefits and Challlenges");
+      const FutureCount = displayWordCount("Future of Surgical Robots")
+      const ConclusionCount = displayWordCount("Conclusion")
+      // Calculate the sum of all selected sections
+      const totalWordCount = IntroductionCount + BeneandChallCount + FutureCount + ConclusionCount;
+      // Display the total word count
+      document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+    }
+    // Run the function for specific sections and display total count when the page loads
+    window.onload = displayTotalWordCount;
+  </script>
+
+</body>
 </html>
 
